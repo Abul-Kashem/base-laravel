@@ -9,8 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Wieldy - A fully responsive, HTML5 based admin template">
   <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- /meta tags -->
-  <title>Wieldy - Admin Dashboard</title>
+  <title>Wieldy - @yield('title')</title>
 
   <!-- Site favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -20,6 +21,8 @@
   <!-- Load Styles -->
 
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/datatables.bundle.css">
+  @stack('stylesheet')
   <!-- /load styles -->
 
 </head>
@@ -76,14 +79,17 @@
 <!-- Optional JavaScript -->
 <script src="js/app.js"></script>
 
-<!-- Perfect Scrollbar jQuery -->
+
 <script src="js/perfect-scrollbar.min.js"></script>
-<!-- /perfect scrollbar jQuery -->
+<script src="js/datatables.bundle.js"></script>
+
+<!-- /Optional JavaScript -->
 
 <!-- masonry script -->
 
 <script src="js/script.js"></script>
-<script src="js/charts/dashboard-crypto.js"></script>
+{{-- <script src="js/charts/dashboard-crypto.js"></script> --}}
+@stack('script')
 </body>
 
 </html>

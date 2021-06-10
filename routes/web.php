@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +17,21 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register'=>false]);
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/',  'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function(){
+
+    Route::get('/',  'HomeController@index');
+
+
+    //Menu Routes
+    Route::get('menu', 'MenuController@index' )->name('menu');
+
+    Route::Group(['prefix' => 'menu', 'as' => 'menu.'], function () {
+        Route::post('datatable-data', 'MenuController@get_datatable_data')->name('datatable.data');
+        Route::post('store-or-update', 'MenuController@store_or_update_data')->name('store.or.update');
+        Route::post('edit', 'MenuController@edit')->name('edit');
+        Route::post('delete', 'MenuController@delete')->name('delete');
+        Route::post('bulk-delete', 'MenuController@bulk_delete')->name('bulk.delete');
+    });
+
+});
