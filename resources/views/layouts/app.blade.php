@@ -88,6 +88,7 @@
 <!-- masonry script -->
 
 <script src="js/script.js"></script>
+<script src="js/custom.js"></script>
 {{-- <script src="js/charts/dashboard-crypto.js"></script> --}}
 @stack('script')
 </body>
